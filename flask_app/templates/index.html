@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"
+    />
+    <title>Register and Login</title>
+  </head>
+  <body>
+    <div class="d-flex justify-content-around">
+      <form
+        action="/register"
+        method="POST"
+        class="col-4 bg-dark p-4 text-primary"
+      >
+        <h1>Register</h1>
+        {% with messages = get_flashed_messages(category_filter=['register']) %}
+        <!-- declare a variable called messages -->
+        {% if messages %}
+        <div class="alert alert-danger" role="alert">
+          <strong>Flash AHHHHHHH!!!!</strong>
+          {% for message in messages %}
+          <!-- loop through the messages -->
+          <p>{{message}}</p>
+          <!-- display each message in a paragraph tag -->
+          {% endfor %}
+        </div>
+        <!--  -->
+        {% endif %}
+        <!--  -->
+        {% endwith %}
+        <div class="text-light">
+          <div class="form-group">
+            <label>First Name:</label>
+            <input type="text" name="f_name" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Last Name:</label>
+            <input type="text" name="l_name" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Email:</label>
+            <input type="text" name="email" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Password:</label>
+            <input type="password" name="password" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Confirm Password:</label>
+            <input type="password" name="con_pass" class="form-control" />
+          </div>
+          <input
+            type="submit"
+            value="Register"
+            class="btn btn-primary btn-outline-dark text-light"
+          />
+        </div>
+      </form>
+      <form action="/login" method="POST" class="col-3 bg-dark p-4 my-5">
+        <h1 class="text-success">Login</h1>
+        {% with messages = get_flashed_messages() %}
+        <!-- declare a variable called messages -->
+        {% if messages %}
+        <!-- check if there are any messages -->
+        {% for message in messages %}
+        <!-- loop through the messages -->
+        <p class="2.5rem text-danger">{{message}}</p>
+        <!-- display each message in a paragraph tag -->
+        {% endfor %}
+        <!--  -->
+        {% endif %}
+        <!--  -->
+        {% endwith %}
+        <div class="text-light">
+          <div class="form-group">
+            <label>Email:</label>
+            <input type="text" name="email" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Password:</label>
+            <input type="password" name="password" class="form-control" />
+          </div>
+          <input
+            type="submit"
+            value="Login"
+            class="btn btn-success btn-outline-dark text-light"
+          />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
