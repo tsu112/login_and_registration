@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"
+    />
+    <title>Show Recipe Instructions</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="d-flex justify-content-between">
+        <div>
+          <h1>Welcome {{user.f_name}}!</h1>
+        </div>
+        <div>
+          <a href="/dashboard" class="m-1"><u>Dashboard</u></a>
+          <a href="/logout" class="m-1"><u>Logout</u></a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">{{ recipe.names }}</h1>
+          <p class="card-text">Description: {{ recipe.descriptions }}</p>
+          <p class="card-text">
+            Under 30 Minutes: {% if recipe.under_thirty == 1 %}
+            <!-- *********** -->
+            Yes
+            <!-- *********** -->
+            {% else %}
+            <!-- *********** -->
+            No
+            <!-- *********** -->
+            {% endif %}
+          </p>
+          <p class="card-text">Instructions: {{ recipe.instructions }}</p>
+          <p class="card-text">Made on: {{ recipe.date_made }}</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

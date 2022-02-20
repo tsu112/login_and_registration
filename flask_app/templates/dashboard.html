@@ -4,10 +4,52 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"
+    />
     <title>Dashboard</title>
   </head>
   <body>
-    <div class="text-center">Welcome {{user.f_name}}!!!</div>
-    <a href="/logout" class="btn btn-info">Logout</a>
+    <div class="container d-flex justify-content-between">
+      <div>
+        <h1>Welcome {{user.f_name}}!</h1>
+        <p>These are the recipes</p>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Under 30 Minutes?</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in recipe %}
+            <tr>
+              <td>{{ row.names }}</td>
+              {% if row.under_thirty == 1 %}
+              <td>Yes</td>
+              {% else %}
+              <td>No</td>
+              {% endif %}
+              <td>
+                <a href="/recipes_show/{{ row.id }}">View Intsructions</a>
+                {% if row.users_id == session.user_id %}|
+                <a href="/recipes_edit/{{row.id}}">Edit</a> |
+                <a href="/recipes_delete/{{row.id}}">Delete</a>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <a href="/new_recipe" class="m-5 btn btn-primary"><u>Create</u></a>
+        <a href="/logout" class="m-5 btn btn-primary"><u>Logout</u></a>
+      </div>
+    </div>
   </body>
 </html>
